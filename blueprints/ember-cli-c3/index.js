@@ -1,5 +1,5 @@
 module.exports = {
-  description: 'Include dependent bower packages.'
+  description: 'Include dependent bower packages.',
 
   afterInstall: function(options) {
     var that = this;
