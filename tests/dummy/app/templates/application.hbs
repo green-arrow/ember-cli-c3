@@ -1,3 +1,12 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<h2 id="title">ember-cli-c3</h2>
 
+<h3>Test Donut Chart</h3>
+
+<p>Taken from a C3 example: <a href="http://c3js.org/samples/chart_donut.html">http://c3js.org/samples/chart_donut.html</a></p>
+
+{{c3-chart data=data config=config}}
+
+<button type="button" {{action 'updateData'}}>Update Data</button>
+
+<button type="button" {{action 'updateTitle'}}>Update Title</button>
 {{outlet}}

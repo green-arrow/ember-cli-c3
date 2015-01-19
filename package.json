@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-c3",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "A simple ember-cli wrapper for C3.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/green-arrow/ember-cli-c3",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Andrew Walton",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
@@ -33,7 +33,12 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli-c3",
+    "c3",
+    "d3",
+    "chart",
+    "graph"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
