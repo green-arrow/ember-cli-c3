@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-c3",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple ember-cli wrapper for C3.",
   "directories": {
     "doc": "doc",
