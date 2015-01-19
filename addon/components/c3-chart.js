@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   /**
    The Chart
    */
-  chart: Ember.computed(function () {
+  chart: function () {
     var cachedChart = this.get('_chart');
 
     if (Ember.isEqual(cachedChart, undefined)) {
@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     }
 
     return cachedChart;
-  }),
+  }.property('_chart'),
 
   generateChart: function() {
     var cachedChart = this.get('_chart'),
