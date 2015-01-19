@@ -6,7 +6,7 @@ module.exports = {
     var that = this;
 
     return that.addBowerPackageToProject('c3').then(function() {
-      return that.addBowerPackageToProject('d3');
+      return that.addBowerPackageToProject('d3', '<=3.5.0');
     });
   }
 };
