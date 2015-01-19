@@ -1,25 +1,26 @@
-# Ember-cli-c3
+# ember-cli-c3
 
-This README outlines the details of collaborating on this Ember addon.
+A simple ember-cli wrapper for C3. Inspired by [ember-c3](https://github.com/Glavin001/ember-c3).
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install:addon ember-cli-c3`
 
-## Running
+## Use
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+`{{c3-chart data=data config=config}}
 
-## Running Tests
+`data`: The C3 data object which contains the data source (rows, columns, url), type, etc. Anything included in the
+data hash in the C3 examples goes here.
 
-* `ember test`
-* `ember test --server`
+`config`: Everything outside of the data hash, such as chart type configuration (eg. a pie chart title, etc).
 
-## Building
+## Additional info
 
-* `ember build`
+This is meant to be a very thin wrapper around C3 and is currently a very naive implementation without a wide array
+of support for various C3 functions. 
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+In the future, I hope to make this more extensible so that you can directly
+access the C3 chart object and call C3 functions (such as unload, etc) directly.
+
+Please feel free to fork this on Github or open an issue if you run into anything bad!
