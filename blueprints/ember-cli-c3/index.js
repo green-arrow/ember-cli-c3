@@ -1,4 +1,5 @@
 module.exports = {
+  normalizeEntityName: function() {},
   description: 'Include dependent bower packages.',
 
   afterInstall: function(options) {
