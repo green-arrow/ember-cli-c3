@@ -8,7 +8,7 @@ A simple ember-cli wrapper for C3. Inspired by [ember-c3](https://github.com/Gla
 
 ## Use
 
-`{{c3-chart data=data config=config}}
+`{{c3-chart data=data config=config}}`
 
 `data`: The C3 data object which contains the data source (rows, columns, url), type, etc. Anything included in the
 data hash in the C3 examples goes here.
