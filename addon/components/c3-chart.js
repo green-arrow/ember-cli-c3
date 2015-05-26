@@ -54,8 +54,20 @@ export default Ember.Component.extend({
     }
   }.observes('config'),
 
-  chartShouldLoadData: function() {
+  didInsertElement: function() {
+		this._super();
+		var chart = this.get('chart');
+		chart.load(this.get('data'));
+	},
+	
+	chartShouldLoadData: function() {
+	  var _this = this;
     var chart = this.get('chart');
-    chart.load(this.get('data'));
-  }.observes('data').on('didInsertElement')
+    var currentIds = this.get('data.columns').mapBy('firstObject');
+    var unloadIds = chart.data().mapBy('id').filter(function(id) {
+    	return currentIds.indexOf(id) < 0;
+    });
+    chart.load({columns: _this.get('data.columns'), unload: unloadIds});
+  }.observes('data')
+
 });
