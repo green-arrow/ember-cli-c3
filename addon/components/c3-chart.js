@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+var get = Ember.get;
+
 export default Ember.Component.extend({
   tagName: 'div',
   classNames: ['ember-c3-chart'],
@@ -22,7 +24,7 @@ export default Ember.Component.extend({
   /**
    The Chart
    */
-  chart: function () {
+  chart: function() {
     var cachedChart = this.get('_chart');
 
     if (Ember.isEqual(cachedChart, undefined)) {
@@ -55,19 +57,41 @@ export default Ember.Component.extend({
   }.observes('config'),
 
   didInsertElement: function() {
-		this._super();
-		var chart = this.get('chart');
-		chart.load(this.get('data'));
-	},
-	
-	chartShouldLoadData: function() {
-	  var _this = this;
+    this._super();
     var chart = this.get('chart');
-    var currentIds = this.get('data.columns').mapBy('firstObject');
+    chart.load(this.get('data'));
+  },
+
+  chartShouldLoadData: function() {
+    var _this = this;
+    var chart = this.get('chart');
+    var currentIds = this._retrieveCurrentIds();
     var unloadIds = chart.data().mapBy('id').filter(function(id) {
-    	return currentIds.indexOf(id) < 0;
+      return currentIds.indexOf(id) < 0;
     });
-    chart.load({columns: _this.get('data.columns'), unload: unloadIds});
-  }.observes('data')
+    var dataToLoad = this.get('data');
+    dataToLoad['unload'] = unloadIds;
+
+    chart.load(dataToLoad);
+  }.observes('data'),
+
+  /**
+   * Get the currently loaded chart ids
+   * This differs based on the data type used (rows / columns)
+   */
+  _retrieveCurrentIds: function() {
+    var data = this.get('data');
+    var rows = get(data, 'rows');
+    var columns = get(data, 'columns');
+    var currentIds;
+
+    if (rows) {
+      currentIds = rows[0];
+    } else if (columns) {
+      currentIds = columns.mapBy('firstObject');
+    }
+
+    return currentIds;
+  }
 
 });
