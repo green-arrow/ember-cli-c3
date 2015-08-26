@@ -82,10 +82,13 @@ export default Ember.Component.extend({
   _retrieveCurrentIds: function() {
     var data = this.get('data');
     var rows = get(data, 'rows');
+    var keys = get(data, 'keys')
     var columns = get(data, 'columns');
     var currentIds;
 
-    if (rows) {
+    if (keys) {
+      currentIds = keys.value;
+    } else if (rows) {
       currentIds = rows[0];
     } else if (columns) {
       currentIds = columns.mapBy('firstObject');
