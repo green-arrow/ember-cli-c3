@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var get = Ember.get;
+const { get } = Ember;
 
 export default Ember.Component.extend({
   tagName: 'div',
@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   /**
    The Chart
    */
-  chart: function() {
+  chart: Ember.computed('_chart', function() {
     var cachedChart = this.get('_chart');
 
     if (Ember.isEqual(cachedChart, undefined)) {
@@ -33,9 +33,9 @@ export default Ember.Component.extend({
     }
 
     return cachedChart;
-  }.property('_chart'),
+  }),
 
-  generateChart: function() {
+  generateChart: Ember.observer('config', function() {
     var cachedChart = this.get('_chart'),
       container = this.get('element'),
       data = this.get('data'),
@@ -54,26 +54,25 @@ export default Ember.Component.extend({
       chart = c3.generate(config);
       this.set('_chart', chart);
     }
-  }.observes('config'),
+  }),
 
   didInsertElement: function() {
-    this._super();
+    this._super(...arguments);
     var chart = this.get('chart');
     chart.load(this.get('data'));
   },
 
-  chartShouldLoadData: function() {
-    var _this = this;
+  chartShouldLoadData: Ember.observer('data', function() {
     var chart = this.get('chart');
     var currentIds = this._retrieveCurrentIds();
-    var unloadIds = chart.data().mapBy('id').filter(function(id) {
+    var unloadIds = chart.data().map(item => item.id).filter(function(id) {
       return currentIds.indexOf(id) < 0;
     });
     var dataToLoad = this.get('data');
     dataToLoad['unload'] = unloadIds;
 
     chart.load(dataToLoad);
-  }.observes('data'),
+  }),
 
   /**
    * Get the currently loaded chart ids
@@ -82,7 +81,7 @@ export default Ember.Component.extend({
   _retrieveCurrentIds: function() {
     var data = this.get('data');
     var rows = get(data, 'rows');
-    var keys = get(data, 'keys')
+    var keys = get(data, 'keys');
     var columns = get(data, 'columns');
     var currentIds;
 
@@ -91,7 +90,7 @@ export default Ember.Component.extend({
     } else if (rows) {
       currentIds = rows[0];
     } else if (columns) {
-      currentIds = columns.mapBy('firstObject');
+      currentIds = columns.map(column => column[0]);
     }
 
     return currentIds;
