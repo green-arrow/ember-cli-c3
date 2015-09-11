@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/green-arrow/ember-cli-c3.svg?branch=master)](https://travis-ci.org/green-arrow/ember-cli-c3)
+
 # ember-cli-c3
 
 A simple ember-cli wrapper for C3. Inspired by [ember-c3](https://github.com/Glavin001/ember-c3).
