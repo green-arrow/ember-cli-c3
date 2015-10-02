@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import c3 from 'c3';
 
 const { get } = Ember;
 
