@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/green-arrow/ember-cli-c3.svg?branch=master)](https://travis-ci.org/green-arrow/ember-cli-c3)
 
+# DEPRECATED: Please use [ember-c3](https://github.com/Glavin001/ember-c3) instead.
+
 # ember-cli-c3
 
 A simple ember-cli wrapper for C3. Inspired by [ember-c3](https://github.com/Glavin001/ember-c3).
